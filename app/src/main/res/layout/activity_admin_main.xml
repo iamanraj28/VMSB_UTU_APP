@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.AdminMain"
+    android:id="@+id/drawableLayout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="Admin Dashboard"
+            android:id="@+id/toolbar"
+            android:background="@color/purple_500"
+            app:titleTextColor="#FFFFFF"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="130dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/addNotice"
+                        android:elevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:background="@drawable/circle"
+                                android:src="@drawable/circular"
+                                android:padding="15dp"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/cream"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Upload Notice"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="130dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/allStudents"
+                        android:elevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:background="@drawable/circle"
+                                android:src="@drawable/ic_face_black"
+                                android:padding="15dp"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/cream"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="All Students"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="130dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/allColleges"
+                        android:elevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:background="@drawable/circle"
+                                android:src="@drawable/ic_college"
+                                android:padding="15dp"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/cream"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="All Colleges"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:id="@+id/navigationView"
+        app:headerLayout="@layout/activity_sidemenu_header"
+        app:menu="@menu/sidemenu"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".admin.AllStudents"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawableLayout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="All Students"
+            android:id="@+id/toolbar"
+            android:background="@color/purple_500"
+            app:titleTextColor="#FFFFFF"/>
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#000"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:id="@+id/navigationView"
+        app:headerLayout="@layout/activity_sidemenu_header"
+        app:menu="@menu/sidemenu"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>
