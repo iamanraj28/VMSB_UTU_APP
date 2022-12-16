@@ -67,7 +67,7 @@ public class FacultyLogin extends AppCompatActivity {
                         passwordTxt = password.getText().toString();
 
                         if (dataSnapshot.child(phoneTxt).exists()) {
-                            if (dataSnapshot.child(phoneTxt).child("Faculty Password").getValue(String.class).equals(passwordTxt)) {
+                            if (dataSnapshot.child(phoneTxt).child("facultyPassword").getValue(String.class).equals(passwordTxt)) {
                                 if (active.isChecked()) {
                                     if (dataSnapshot.child(phoneTxt).child("as").getValue(String.class).equals("faculty")) {
                                         preferences.setDataLogin(FacultyLogin.this, true);

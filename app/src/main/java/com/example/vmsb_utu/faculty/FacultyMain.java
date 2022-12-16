@@ -19,6 +19,8 @@ import com.example.vmsb_utu.college.CollegeMain;
 import com.example.vmsb_utu.preferences;
 import com.example.vmsb_utu.students.StudentsLogin;
 import com.example.vmsb_utu.students.StudentsMain;
+import com.example.vmsb_utu.students.StudentsProfile;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -41,6 +43,9 @@ public class FacultyMain extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawableLayout);
         navigationView = findViewById(R.id.navigationView);
         toolbar = findViewById(R.id.toolbar);
+
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.home);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -66,5 +71,33 @@ public class FacultyMain extends AppCompatActivity {
                 return true;
             }
         });
+
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId())
+                {
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(), FacultyProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.home:
+                        return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            finishAffinity();
+            finish();
+        }
     }
 }

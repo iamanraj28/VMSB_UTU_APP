@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.vmsb_utu.R;
@@ -28,9 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FacultySignup extends AppCompatActivity {
 
-    EditText facultyEmail, facultyPass, facultyName, facultyPhone;
+    EditText facultyEmail, facultyPass, facultyName, facultyPhone, collegeName;
     Button facultySignup, facultyLogin;
-    String facultyNameTxt, facultyPhoneTxt, facultyEmailTxt, facultyPassTxt;
+    String facultyNameTxt, facultyPhoneTxt, facultyEmailTxt, facultyPassTxt, collegeNameTxt, genderTxt;
+    RadioButton maleRadioButton, femaleRadioButton;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://vmsb-utu-d6d84-default-rtdb.firebaseio.com/");
 
@@ -44,6 +46,9 @@ public class FacultySignup extends AppCompatActivity {
         facultyName = findViewById(R.id.facultyName);
         facultyPass = findViewById(R.id.facultyPassword);
         facultyPhone = findViewById(R.id.facultyPhone);
+        collegeName = findViewById(R.id.facultyCollegeName);
+        maleRadioButton = findViewById(R.id.maleRadioButton);
+        femaleRadioButton = findViewById(R.id.femaleRadioButton);
 
         facultySignup = findViewById(R.id.facultySignup);
         facultyLogin = findViewById(R.id.facultyLogin);
@@ -58,11 +63,23 @@ public class FacultySignup extends AppCompatActivity {
                 facultyEmailTxt = facultyEmail.getText().toString();
                 facultyPhoneTxt = facultyPhone.getText().toString();
                 facultyNameTxt = facultyName.getText().toString();
+                if (maleRadioButton.isChecked()){
+                    genderTxt = "Male";
+                } else if (femaleRadioButton.isChecked()){
+                    genderTxt = "Female";
+                }
                 facultyPassTxt = facultyPass.getText().toString();
+                collegeNameTxt = collegeName.getText().toString();
 
-                if (facultyEmailTxt.isEmpty() || facultyPhoneTxt.isEmpty() || facultyNameTxt.isEmpty() || facultyPassTxt.isEmpty()){
+                if (facultyEmailTxt.isEmpty() || facultyPhoneTxt.isEmpty() || facultyNameTxt.isEmpty() || facultyPassTxt.isEmpty() || collegeNameTxt.isEmpty() || genderTxt.isEmpty()){
                     facultyEmail.setError("Email cannot be empty");
                     facultyEmail.requestFocus();
+                    collegeName.setError("College Name cannot be empty");
+                    collegeName.requestFocus();
+                    maleRadioButton.setError("Gender is not selected");
+                    maleRadioButton.requestFocus();
+                    femaleRadioButton.setError("Gender is not selected");
+                    femaleRadioButton.requestFocus();
                     facultyPhone.setError("Phone cannot be empty");
                     facultyPhone.requestFocus();
                     facultyName.setError("Name cannot be empty");
@@ -98,10 +115,12 @@ public class FacultySignup extends AppCompatActivity {
                                             Toast.makeText(FacultySignup.this, "Email already registered", Toast.LENGTH_SHORT).show();
                                         }
                                         else{
-                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("Faculty Name").setValue(facultyNameTxt);
-                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("Faculty Email").setValue(facultyEmailTxt);
-                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("Faculty Phone").setValue(facultyPhoneTxt);
-                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("Faculty Password").setValue(facultyPassTxt);
+                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("facultyName").setValue(facultyNameTxt);
+                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("facultyEmail").setValue(facultyEmailTxt);
+                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("collegeName").setValue(collegeNameTxt);
+                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("gender").setValue(genderTxt);
+                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("facultyPhone").setValue(facultyPhoneTxt);
+                                            databaseReference.child("faculties").child(facultyPhoneTxt).child("facultyPassword").setValue(facultyPassTxt);
                                             databaseReference.child("faculties").child(facultyPhoneTxt).child("as").setValue("faculty");
 
                                             startActivity(new Intent(getApplicationContext(), FacultyLogin.class));

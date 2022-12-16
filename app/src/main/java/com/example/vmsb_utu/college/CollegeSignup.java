@@ -1,13 +1,20 @@
 package com.example.vmsb_utu.college;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.vmsb_utu.R;
@@ -25,6 +32,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.io.InputStream;
+import java.util.Random;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CollegeSignup extends AppCompatActivity {
 
@@ -98,10 +120,10 @@ public class CollegeSignup extends AppCompatActivity {
                                             Toast.makeText(CollegeSignup.this, "Email already registered", Toast.LENGTH_SHORT).show();
                                         }
                                         else{
-                                            databaseReference.child("colleges").child(collegePhoneTxt).child("College Name").setValue(collegeNameTxt);
-                                            databaseReference.child("colleges").child(collegePhoneTxt).child("College Email").setValue(collegeEmailTxt);
-                                            databaseReference.child("colleges").child(collegePhoneTxt).child("College Phone").setValue(collegePhoneTxt);
-                                            databaseReference.child("colleges").child(collegePhoneTxt).child("College Password").setValue(collegePassTxt);
+                                            databaseReference.child("colleges").child(collegePhoneTxt).child("collegeName").setValue(collegeNameTxt);
+                                            databaseReference.child("colleges").child(collegePhoneTxt).child("collegeEmail").setValue(collegeEmailTxt);
+                                            databaseReference.child("colleges").child(collegePhoneTxt).child("collegePhone").setValue(collegePhoneTxt);
+                                            databaseReference.child("colleges").child(collegePhoneTxt).child("collegePassword").setValue(collegePassTxt);
                                             databaseReference.child("colleges").child(collegePhoneTxt).child("as").setValue("college");
 
                                             startActivity(new Intent(getApplicationContext(), CollegeLogin.class));
@@ -134,5 +156,4 @@ public class CollegeSignup extends AppCompatActivity {
         });
 
     }
-
 }

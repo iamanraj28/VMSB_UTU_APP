@@ -24,7 +24,7 @@ public class AdminMain extends AppCompatActivity implements View.OnClickListener
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    CardView uploadNotice, allStudents, allColleges;
+    CardView uploadNotice, allColleges;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,9 @@ public class AdminMain extends AppCompatActivity implements View.OnClickListener
         toolbar = findViewById(R.id.toolbar);
 
         uploadNotice = findViewById(R.id.addNotice);
-        allStudents = findViewById(R.id.allStudents);
         allColleges = findViewById(R.id.allColleges);
 
         uploadNotice.setOnClickListener(this);
-        allStudents.setOnClickListener(this);
         allColleges.setOnClickListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -78,11 +76,6 @@ public class AdminMain extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()){
             case R.id.addNotice:
                 startActivity(new Intent(getApplicationContext(), UploadNotice.class));
-                overridePendingTransition(0,0);
-                break;
-
-            case R.id.allStudents:
-                startActivity(new Intent(getApplicationContext(), AllStudents.class));
                 overridePendingTransition(0,0);
                 break;
 
